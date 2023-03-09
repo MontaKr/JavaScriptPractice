@@ -1,11 +1,9 @@
 let clickedBtn = $(".tab-button");
 let clickedDiv = $(".tab-content");
 
-for (let i = 0; i < 3; i++) {
-  clickedBtn.eq(i).on("click", function () {
-    tabControl(i);
-  });
-}
+$(".list").click(function (e) {
+  tabControl(e.target.dataset.id);
+});
 
 function tabControl(i) {
   clickedBtn.removeClass("orange");
