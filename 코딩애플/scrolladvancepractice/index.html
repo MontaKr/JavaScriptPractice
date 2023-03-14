@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+    <link href="main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="card-background">
+      <div class="card-box">
+        <img src="card1.png" />
+      </div>
+      <div class="card-box">
+        <img src="card2.png" />
+      </div>
+      <div class="card-box">
+        <img src="card3.png" />
+      </div>
+    </div>
+    <script>
+      $(window).scroll(function () {
+        console.log($(window).scrollTop());
+        let currentScroll = $(window).scrollTop();
+        let firstY = (-1 / 500) * currentScroll + 115 / 50;
+        $(".card-box").eq(0).css("opacity", firstY);
+        let firstZ = (-1 / 5000) * currentScroll + 565 / 500;
+        $(".card-box").eq(0).css("transform", `scale(${firstZ})`);
+        let secondY = (-1 / 800) * currentScroll + 195 / 80;
+        $(".card-box").eq(1).css("opacity", secondY);
+        let secondZ = (-1 / 8000) * currentScroll + 915 / 800;
+        $(".card-box").eq(1).css("transform", `scale(${secondZ})`);
+      });
+    </script>
+  </body>
+</html>
