@@ -11,7 +11,7 @@
     <div style="overflow: hidden">
       <div class="slide-container">
         <div class="slide-box">
-          <img src="car1.png" />
+          <img src="car1.png" draggable="false" />
         </div>
         <div class="slide-box">
           <img src="car2.png" />
@@ -51,6 +51,47 @@
       $(".slide-3").on("click", function () {
         $(".slide-container").css("transform", "translateX(-200vw)");
       });
+
+      let firstX = 0;
+      let isClikc = false;
+      // 마우스를 눌렀을 떄 마우스의 X 좌표
+      $(".slide-box")
+        .eq(0)
+        .on("mousedown", function (e) {
+          firstX = e.clientX;
+          isClick = true;
+        });
+      // 마우스를 이동할 때 마우스의 X좌표
+      $(".slide-box")
+        .eq(0)
+        .on("mousemove", function (e) {
+          if (isClick === true) {
+            $(".slide-container").css(
+              "transform",
+              `translateX(${e.clientX - firstX}px)`
+            );
+          }
+        });
+
+      $(".slide-box")
+        .eq(0)
+        .on("mouseup", function (e) {
+          isClick = false;
+
+          if (e.clientX - firstX < -200) {
+            $(".slide-container")
+              .css("transition", "all 0.5s")
+              .css("transform", "translateX(-100vw)");
+          } else {
+            $(".slide-container")
+              .css("transition", "all 0.5s")
+              .css("transform", "translateX(0vw)");
+          }
+
+          setTimeout(() => {
+            $(".slide-container").css("transition", "none");
+          }, 500);
+        });
     </script>
   </body>
 </html>
